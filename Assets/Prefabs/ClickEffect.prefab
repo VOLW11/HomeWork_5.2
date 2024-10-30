@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 3278584167006141170}
   - component: {fileID: 6654695060112984696}
   - component: {fileID: 8741470871229685184}
-  m_Layer: 0
+  - component: {fileID: 4985114724290511292}
+  - component: {fileID: 6771324732623159271}
+  m_Layer: 2
   m_Name: ClickEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +124,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3906,7 +3908,7 @@ ParticleSystem:
     outside: 0
     enter: 0
     exit: 0
-    colliderQueryMode: 0
+    colliderQueryMode: 2
     radiusScale: 1
     primitives: []
   SubModule:
@@ -4930,6 +4932,39 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4985114724290511292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244585180391991381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d549c23b4364be84b9886988125b6cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &6771324732623159271
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244585180391991381}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.736254, y: 0.26829848, z: 2.380983}
+  m_Center: {x: -0.0472488, y: 0.04164201, z: -0.24763414}
 --- !u!1 &2343348096279141369
 GameObject:
   m_ObjectHideFlags: 0
@@ -4943,7 +4978,7 @@ GameObject:
   - component: {fileID: 8405520344289914149}
   - component: {fileID: 3760075176772978708}
   - component: {fileID: 6913329503643163472}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4961,7 +4996,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.4100001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3278584167006141170}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4973,7 +5008,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2343348096279141369}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -9877,7 +9912,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 12, y: 0, z: 0.00006063168, w: -2.0000002}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 3.01e-43, z: 1.0094e-41, w: 3.587e-42}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -9916,7 +9951,7 @@ GameObject:
   - component: {fileID: 5103353064866557401}
   - component: {fileID: 2406154592061191178}
   - component: {fileID: 3962602557361698404}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9946,7 +9981,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3242015487355119796}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -10021,7 +10056,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -10074,7 +10109,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -14804,7 +14839,7 @@ GameObject:
   - component: {fileID: 2110815386259193291}
   - component: {fileID: 758209285807256249}
   - component: {fileID: 5477596200532573911}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Crack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14834,14 +14869,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6362131891420211146}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -19728,7 +19763,7 @@ GameObject:
   - component: {fileID: 7602125780182565427}
   - component: {fileID: 2330711528523603281}
   - component: {fileID: 3679058142084313387}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19746,7 +19781,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3278584167006141170}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19758,7 +19793,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7136319667202858494}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -24625,13 +24660,13 @@ GameObject:
   - component: {fileID: 9053256117399620475}
   - component: {fileID: 57498966389962448}
   - component: {fileID: 4242669698201280232}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9053256117399620475
 Transform:
   m_ObjectHideFlags: 0
@@ -29513,7 +29548,7 @@ GameObject:
   - component: {fileID: 2255134077047928805}
   - component: {fileID: 1965206752714554718}
   - component: {fileID: 7275100928229274651}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29543,7 +29578,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8933447576462498668}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
