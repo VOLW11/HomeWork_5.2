@@ -18,8 +18,6 @@ public class Bomb : MonoBehaviour
 
         _time += Time.deltaTime;
 
-        Debug.Log(_time);
-
         if (_time >= _timeExplosion)
         {
             Bang(_view);
@@ -58,5 +56,4 @@ public class Bomb : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 4.5f);
     }
-
 }

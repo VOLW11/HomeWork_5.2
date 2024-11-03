@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ClickEffectDestroy : MonoBehaviour
 {
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        Controller controller = other.GetComponent<Controller>();
+        Character character = other.GetComponent<Character>();
 
-        if (controller != null)
+        if (character != null)
             Destroy(gameObject);
     }
 }

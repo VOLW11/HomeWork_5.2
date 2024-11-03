@@ -1,45 +1,90 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Character : MonoBehaviour, IDamageable
 {
-    [SerializeField] private Controller _controller;
-    [SerializeField] private CharacterView _view;
-    [SerializeField] private int _health;
-
-    private Camera _camera;
+    private CharacterView _view;
     private NavMeshAgent _agent;
-    private int _maxHealth;
 
-    private void Awake()
+    private Health _health;
+    private Mover _mover;
+
+    private CinemachineVirtualCamera _virtualCamera;
+
+    private int _maxHealth;
+    private int _leftMouseButton = 0;
+
+    public void Initialize(Health health, CinemachineVirtualCamera virtualCamera)
+    {
+        _health = health;
+        _virtualCamera = virtualCamera;
+    }
+
+    private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _camera = Camera.main;
-        _maxHealth = _health;
+        _view = GetComponentInChildren<CharacterView>();
+
+        _mover = new Mover(_agent);
+
+        _virtualCamera.Follow = transform;
+        _maxHealth = _health.Value;
     }
 
     private void Update()
     {
-        _controller.Initialize(_camera, _agent);
+        if (_agent == null)
+            return;
 
-        if (_health <= (int)(_maxHealth * 0.3f))
+        if (_agent.destination == _agent.transform.position)
+        {
+            _agent.isStopped = true;
+            _view.StopRunning();
+        }
+
+        if (_health.Value <= (int)(_maxHealth * 0.3f))
             _view.InjuredEnable();
 
-        if (_health <= 0)
+        if (_health.Value == 0)
         {
-            _health = 0;
             _view.Death();
-            _controller.enabled = false;
             _agent.isStopped = true;
         }
+
+        if (Input.GetMouseButtonDown(_leftMouseButton))
+            MoveToTarget();
     }
 
     public void TakeDamage(int damage)
     {
         _view.TakeDamage();
-        _health -= damage;
+        _health.Reduce(damage);
+    }
+
+    private void MoveToTarget()
+    {
+        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(cameraRay, out RaycastHit hitInfo))
+        {
+            Ground ground = hitInfo.collider.GetComponent<Ground>();
+
+            if (ground != null)
+            {
+                _view.TargetEffect(hitInfo.point);
+
+                _mover.MoveToClick(hitInfo.point);
+
+                _agent.isStopped = false;
+                _view.StartRunning();
+            }
+            else
+            {
+                _view.TargetErrorEffect(hitInfo.point);
+            }
+        }
     }
 }

@@ -9,20 +9,19 @@ public class Mover
     private NavMeshAgent _agent;
     private Vector3 _direction;
 
-    public Mover(NavMeshAgent agent, Vector3 direction)
+    public Mover(NavMeshAgent agent)
     {
-        _direction = direction;
         _agent = agent;
     }
 
-    public void MoveToClick()
+    public void MoveToClick(Vector3 direction)
     {
         NavMeshPath pathToTarget = new NavMeshPath();
 
-        if (GetPath(pathToTarget, _direction) == false)
+        if (GetPath(pathToTarget, direction) == false)
             return;
 
-        _agent.SetDestination(_direction);
+        _agent.SetDestination(direction);
     }
 
     private bool GetPath(NavMeshPath pathToTarget, Vector3 direction)
