@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4532995643155674634}
   - component: {fileID: 7518861091697015520}
   - component: {fileID: 8931475759060770611}
+  - component: {fileID: 4669693328885479600}
   m_Layer: 2
   m_Name: default
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4669693328885479600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785329768445392510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b52b1ea8c500d4d9cad7db2a648bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosion: {fileID: 4517053553941316558, guid: 363f88068418b55478b60542507ee2d0,
+    type: 3}
 --- !u!1 &2328066318028253159
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,8 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41029f02c6571e54d8e3a0686fe47f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosion: {fileID: 4517053553941316558, guid: 363f88068418b55478b60542507ee2d0,
-    type: 3}
+  _view: {fileID: 4669693328885479600}
   _damage: 10
   _timeExplosion: 2
 --- !u!135 &8717602829779352051

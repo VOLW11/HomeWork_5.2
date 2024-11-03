@@ -12,6 +12,7 @@ public class Controller : MonoBehaviour
     private Camera _camera;
     private NavMeshAgent _agent;
     private int _leftMouseButton = 0;
+    private RaycastHit _hitInfo;
 
     public void Initialize(Camera camera, NavMeshAgent agent)
     {
