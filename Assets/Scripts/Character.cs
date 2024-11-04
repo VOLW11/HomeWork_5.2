@@ -17,10 +17,9 @@ public class Character : MonoBehaviour, IDamageable
     private int _maxHealth;
     private int _leftMouseButton = 0;
 
-    public void Initialize(Health health, CinemachineVirtualCamera virtualCamera)
+    public void Initialize(Health health)
     {
         _health = health;
-        _virtualCamera = virtualCamera;
     }
 
     private void Start()
@@ -30,7 +29,6 @@ public class Character : MonoBehaviour, IDamageable
 
         _mover = new Mover(_agent);
 
-        _virtualCamera.Follow = transform;
         _maxHealth = _health.Value;
     }
 

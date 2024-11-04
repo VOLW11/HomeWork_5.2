@@ -12,6 +12,7 @@ public class Bootstrap : MonoBehaviour
     private void Awake()
     {
         Character character = Instantiate(_characterPrefab, transform.position, Quaternion.identity, null);
-        character.Initialize(new Health(_health), _virtualCamera);
+        character.Initialize(new Health(_health));
+        _virtualCamera.Follow = character.transform;
     }
 }
