@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class Character : MonoBehaviour, IDamageable
 {
+    [SerializeField] private AnimationCurve _jumpCurve;
+    [SerializeField] private float _jumpDuration;
+
     private CharacterView _view;
     private NavMeshAgent _agent;
 
@@ -15,10 +19,17 @@ public class Character : MonoBehaviour, IDamageable
     private CinemachineVirtualCamera _virtualCamera;
 
     private int _maxHealth;
-    private int _leftMouseButton = 0;
+    private float stoppingDistance = 0.05f;
 
-    public void Initialize(Health health)
+    private Coroutine _jumpCoroutine;
+
+    private MouseControl _mouseControl;
+
+    public void Initialize(Health health, MouseControl mouseControl)
     {
+        _mouseControl = mouseControl;
+        _mouseControl.HitInfoPoint += MoveToTarget;
+        _mouseControl.HitInfoPathError += PathError;
         _health = health;
     }
 
@@ -32,15 +43,31 @@ public class Character : MonoBehaviour, IDamageable
         _maxHealth = _health.Value;
     }
 
+    private void OnDestroy()
+    {
+        _mouseControl.HitInfoPoint -= MoveToTarget;
+        _mouseControl.HitInfoPathError -= PathError;
+    }
+
     private void Update()
     {
         if (_agent == null)
             return;
 
-        if (_agent.destination == _agent.transform.position)
+        if ((_agent.destination - _agent.transform.position).magnitude <= stoppingDistance)
         {
             _agent.isStopped = true;
             _view.StopRunning();
+        }
+
+        if (_agent.isOnOffMeshLink)
+        {
+            if (_jumpCoroutine == null)
+            {
+                _jumpCoroutine = StartCoroutine(Jump(_jumpDuration));
+            }
+
+            return;
         }
 
         if (_health.Value <= (int)(_maxHealth * 0.3f))
@@ -51,9 +78,6 @@ public class Character : MonoBehaviour, IDamageable
             _view.Death();
             _agent.isStopped = true;
         }
-
-        if (Input.GetMouseButtonDown(_leftMouseButton))
-            MoveToTarget();
     }
 
     public void TakeDamage(int damage)
@@ -62,27 +86,42 @@ public class Character : MonoBehaviour, IDamageable
         _health.Reduce(damage);
     }
 
-    private void MoveToTarget()
+    private void MoveToTarget(Vector3 hitInfoPoint)
     {
-        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        _view.TargetEffect(hitInfoPoint);
 
-        if (Physics.Raycast(cameraRay, out RaycastHit hitInfo))
+        _mover.MoveToClick(hitInfoPoint);
+
+        _agent.isStopped = false;
+        _view.StartRunning();
+    }
+
+    private void PathError(Vector3 hitInfoPoint)
+    {
+        _view.TargetErrorEffect(hitInfoPoint);
+    }
+
+    private IEnumerator Jump(float duration)
+    {
+        _view.StartJumping();
+
+        OffMeshLinkData data = _agent.currentOffMeshLinkData;
+        Vector3 startPos = _agent.transform.position;
+        Vector3 endPos = data.endPos + Vector3.up * _agent.baseOffset;
+
+        float progress = 0;
+
+        while (progress < duration)
         {
-            Ground ground = hitInfo.collider.GetComponent<Ground>();
-
-            if (ground != null)
-            {
-                _view.TargetEffect(hitInfo.point);
-
-                _mover.MoveToClick(hitInfo.point);
-
-                _agent.isStopped = false;
-                _view.StartRunning();
-            }
-            else
-            {
-                _view.TargetErrorEffect(hitInfo.point);
-            }
+            float yOffset = _jumpCurve.Evaluate(progress / duration);
+            _agent.transform.position = Vector3.Lerp(startPos, endPos, progress / duration) + yOffset * Vector3.up;
+            transform.rotation = Quaternion.LookRotation(endPos - startPos);
+            progress += Time.deltaTime;
+            yield return null;
         }
+
+        _agent.CompleteOffMeshLink();
+        _view.StopJumping();
+        _jumpCoroutine = null;
     }
 }

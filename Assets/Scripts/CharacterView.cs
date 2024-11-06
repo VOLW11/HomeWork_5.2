@@ -6,6 +6,8 @@ using UnityEngine;
 public class CharacterView : MonoBehaviour
 {
     private readonly int IsRunningKey = Animator.StringToHash("IsRunning");
+    private readonly int IsJumpingKey = Animator.StringToHash("IsJumping");
+
     private float _maxWeight = 1f;
     private ParticleSystem _prefabClickEffect;
 
@@ -50,4 +52,8 @@ public class CharacterView : MonoBehaviour
     {
         _animator.SetTrigger("TakeDamage");
     }
+
+    public void StartJumping() => _animator.SetBool(IsJumpingKey, true);
+
+    public void StopJumping() => _animator.SetBool(IsJumpingKey, false);
 }

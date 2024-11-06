@@ -147,6 +147,8 @@ MonoBehaviour:
   _view: {fileID: 4669693328885479600}
   _damage: 10
   _timeExplosion: 2
+  _example: {fileID: 7987021423213971536, guid: bce5d5a8b180a4c48a769e65970555d1,
+    type: 3}
 --- !u!135 &8717602829779352051
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class Bomb : MonoBehaviour
     [SerializeField] private BombView _view;
     [SerializeField] private int _damage;
     [SerializeField] private float _timeExplosion;
+
+    [SerializeField] private AudioManager _audioManager;
 
     private float _time;
     private bool _isActive;
@@ -47,6 +50,9 @@ public class Bomb : MonoBehaviour
         }
 
         view.Explosion();
+        
+       // Explosion?.Invoke();
+       _audioManager.OnBombExplosion();
 
         Destroy(gameObject);
     }

@@ -1134,7 +1134,7 @@ GameObject:
   - component: {fileID: 7962103084291185665}
   - component: {fileID: 2208035913109349185}
   - component: {fileID: 5354016672549192528}
-  - component: {fileID: 968012980286031455}
+  - component: {fileID: 578004155015288370}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1230,7 +1230,7 @@ CapsuleCollider:
   m_Height: 1.7776699
   m_Direction: 1
   m_Center: {x: 0, y: 0.8477869, z: 0}
---- !u!114 &968012980286031455
+--- !u!114 &578004155015288370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1239,9 +1239,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 2846032147807228223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3621e0a69e7eef649abd1a8399fd0f31, type: 3}
+  m_Script: {fileID: 11500000, guid: 323da7fdec27cd340b261bffecc1b267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 4.8722043
+      outSlope: 4.8722043
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.08
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4.6633077
+      outSlope: -4.6633077
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09043479
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _jumpDuration: 1
 --- !u!1 &2855995081493514275
 GameObject:
   m_ObjectHideFlags: 0
