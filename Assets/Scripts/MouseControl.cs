@@ -1,14 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MouseControl
 {
-    public delegate void MyDelegate(Vector3 hitInfoPoint);
-    public event MyDelegate HitInfoPoint;
-    public event MyDelegate HitInfoPathError;
+    public event Action<Vector3> HitInfoPoint;
+    public event Action<Vector3> HitInfoPathError;
 
     private InputHandler _inputHandler;
 

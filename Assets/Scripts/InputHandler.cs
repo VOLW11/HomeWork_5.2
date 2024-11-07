@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,7 @@ public class InputHandler : MonoBehaviour
     private int _leftMouseButton = 0;
     private Vector3 _mousePosition;
 
-    public delegate void MyDelegate(Vector3 mousePosition);
-    public event MyDelegate OnClickMouse;
+    public event Action<Vector3> OnClickMouse;
 
 
     void Update()
