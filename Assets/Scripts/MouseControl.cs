@@ -20,7 +20,6 @@ public class MouseControl
         _inputHandler.OnClickMouse += MovePosition;
     }
 
-
     private void MovePosition(Vector3 mousePosition)
     {
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
